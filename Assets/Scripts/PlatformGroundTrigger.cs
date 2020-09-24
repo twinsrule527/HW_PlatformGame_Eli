@@ -6,14 +6,14 @@ using UnityEngine;
 //USAGE: A trigger box parented by the player sprite
 public class PlatformGroundTrigger : MonoBehaviour
 {
-    public GameObject myPlayer;
+    public PlayerJump myPlayer;
 
 
-    void OnTriggerStay2D(Collider2D activator) {
-        myPlayer.PlayerJump.isGrounded = true;
+    void OnTriggerStay2D(Collider2D activator ) {
+       myPlayer.isGrounded = true;
     }
 
-    void OnTriggerExit2D(Collider2D activator) {
-        myPlayer.PlayerJump.isGrounded = false;
+    void OnTriggerExit2D(Collider2D activator ) {
+       myPlayer.isGrounded = false;
     }
 }

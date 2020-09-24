@@ -13,16 +13,18 @@ public class PlayerJump : MonoBehaviour
 
     Transform myTransform;
     Rigidbody2D myRigidbody;
-    bool isGrounded;
+    public bool isGrounded;
 
     bool isJumping = false;
-    bool charging = false;
-    float charge;
+    public bool charging = false;
+    public float charge;
+    public float charge_rate;
+    public float max_charge;
     // Start is called before the first frame update
     void Start()
     {
         //Debug.Log(Directional.localPosition.y.ToString());
-        charge = 0f;
+        charge = 3f;
         myRigidbody = GetComponent<Rigidbody2D>();//caches the reference
         myTransform = GetComponent<Transform>();
     }
@@ -33,10 +35,11 @@ public class PlayerJump : MonoBehaviour
         //When the player holds SPACE to jump, it begins to charge
         if(Input.GetButton("Jump") && isGrounded ) {
             charging = true;
-            if( charge < 20 ) {
-                charge+=0.05f;
+            if( charge < max_charge ) {
+                charge+=charge_rate*Time.deltaTime;
             }
         }
+        //Whent the player first releases SPACE, it stops charging and the player jumps
         else if(charging) {
             isJumping = true;
             charging = false;
@@ -46,7 +49,7 @@ public class PlayerJump : MonoBehaviour
     void FixedUpdate() {
         if( isJumping ) {
             myRigidbody.velocity = new Vector2(Directional.position.x-myTransform.position.x,Directional.position.y-myTransform.position.y)*charge;
-            charge = 0;
+            charge = 3f;
             isJumping = false;
         }
     }
