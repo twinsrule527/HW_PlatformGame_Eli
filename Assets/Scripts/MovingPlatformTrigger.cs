@@ -29,7 +29,7 @@ public class MovingPlatformTrigger : MonoBehaviour
     float y_start;
 
 //This final variable is used to trigger when the object no longer is interacting with anything else
-    bool done;
+    public bool done;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,14 +42,14 @@ public class MovingPlatformTrigger : MonoBehaviour
 
     //While an object is in the trigger, this object will move if it has not reached its end
     void OnTriggerEnter2D(Collider2D activator) {
-        
+        Debug.Log("H");
         done = false;
 
     }
 //When an object leaves the trigger, it will move back to its start
     void OnTriggerExit2D(Collider2D activator) {
 
-        done = true;
+       done = true;
 
     }
 
