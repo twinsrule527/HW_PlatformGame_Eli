@@ -9,6 +9,8 @@ public class MovingPlatformTrigger : MonoBehaviour
 {
     public Transform myPlatform;
 
+    public Transform myPlayer;
+
 //These two floats will determine the speed the platform moves in both directions
 //+: moves up/right. -: moves left/down
     public float x_speed;
@@ -42,15 +44,16 @@ public class MovingPlatformTrigger : MonoBehaviour
 
     //While an object is in the trigger, this object will move if it has not reached its end
     void OnTriggerEnter2D(Collider2D activator) {
-        Debug.Log("H");
-        done = false;
+        if(activator.name == myPlayer.name) {
+            done = false;
+        }
 
     }
 //When an object leaves the trigger, it will move back to its start
     void OnTriggerExit2D(Collider2D activator) {
-
-       done = true;
-
+        if(activator.name == myPlayer.name) {
+            done = true;
+        }
     }
 
 //if the platform is not being interacted with, and return_when_done is selected,
@@ -59,6 +62,7 @@ public class MovingPlatformTrigger : MonoBehaviour
         if(!done) {
             if(( myPlatform.position.x < x_start + x_stop && x_speed > 0 ) || ( myPlatform.position.x > x_start + x_stop && x_speed < 0 ) ) {
                 myPlatform.position += new Vector3(x_speed, 0f, 0f);
+                myPlayer.position += new Vector3(x_speed, 0f, 0f);
             }
             if(( myPlatform.position.y < y_start + y_stop && y_speed > 0 ) || ( myPlatform.position.y > y_start + y_stop && y_speed < 0 ) ) {
                 myPlatform.position += new Vector3(0f, y_speed, 0f);

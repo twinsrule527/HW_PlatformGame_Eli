@@ -7,13 +7,17 @@ using UnityEngine;
 public class PlatformGroundTrigger : MonoBehaviour
 {
     public PlayerJump myPlayer;
+    public GameObject playerName;
 
-
-    void OnTriggerStay2D(Collider2D activator ) {
-       myPlayer.isGrounded = true;
+    void OnTriggerEnter2D(Collider2D activator ) {
+       if(activator.name != playerName.name && activator.name != "CameraTrigger" && activator.name != "CameraTriggerPt2") {
+          myPlayer.isGrounded = true;
+       }
     }
 
     void OnTriggerExit2D(Collider2D activator ) {
-       myPlayer.isGrounded = false;
+       if(activator.name != playerName.name && activator.name != "CameraTrigger" && activator.name != "CameraTriggerPt2") {
+          myPlayer.isGrounded = false;
+       }
     }
 }
