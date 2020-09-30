@@ -11,7 +11,6 @@ public class DeathSpike : MonoBehaviour
     void OnTriggerEnter2D(Collider2D activator) {
         if(activator.name == MyPlayer.name) {
             death = true;
-            Debug.Log("DEATH");
         }
     }
 }
