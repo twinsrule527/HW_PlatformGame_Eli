@@ -8,9 +8,11 @@ public class ButtonTrigger : MonoBehaviour
 {
     public SpriteRenderer myDoor;
     public Sprite End_Sprite;
+    public AudioSource doorAudio;
     void OnTriggerEnter2D(Collider2D activator) {
         if(activator.name == "PlayerCharacter") {
             myDoor.sprite = End_Sprite;
+            doorAudio.Play();
         }
     }
 }

@@ -18,7 +18,7 @@ public class ChargeAppearance : MonoBehaviour
     void Update()
     {
         //Every update frame, it readjusts its size
-        float scalar = 30 / myPlayer.max_charge;
+        float scalar = 27 / myPlayer.max_charge;
         if(myPlayer.charging) {
             myTransform.localScale = new Vector3(myPlayer.charge*scalar, myTransform.localScale.y, myTransform.localScale.z);
         }
